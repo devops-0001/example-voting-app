@@ -1,3 +1,5 @@
+New FEATUREX has been created
+
 Example Voting (Instavote) App
 =========
 
