@@ -2,7 +2,6 @@ pipeline {
 
   agent none
 
-
   stages{
       stage('Build'){
           agent{
@@ -17,7 +16,6 @@ pipeline {
               sh 'pip install -r requirements.txt'
             }
           }
-
       }
       stage('Unit Test'){
           agent{
@@ -40,7 +38,7 @@ pipeline {
             echo 'Packaging vote app with docker'
             script{
               docker.withRegistry('https://index.docker.io/v1/', 'dockerlogin') {
-                  def voteImage = docker.build("xxxxxx/vote:v${env.BUILD_ID}", "./vote")
+                  def voteImage = docker.build("drxzhang/vote:v${env.BUILD_ID}", "./vote")
                   voteImage.push()
                   voteImage.push("dev")
 	          voteImage.push("latest")
@@ -48,14 +46,12 @@ pipeline {
             }
           }
       }
-
   }
 
   post{
     always{
         echo 'Pipeline for vote is complete..'
-    }
- 
+    } 
   }
 
 }
