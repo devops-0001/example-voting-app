@@ -37,7 +37,7 @@ pipeline {
       stage('Docker BnP'){
           agent any
           steps{
-            echo 'Packaging vote app with docker'
+            echo 'Packaging vote app with docker feature'
             script{
               docker.withRegistry('https://index.docker.io/v1/', 'dockerlogin') {
                   def voteImage = docker.build("meetandani/vote:v${env.BUILD_ID}", "./vote")
