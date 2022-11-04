@@ -34,18 +34,24 @@ pipeline {
             }
           }
       }
+//       stage('Docker BnP'){
+//           agent any
+//           steps{
+//             echo 'Packaging vote app with docker'
+//             script{
+//               docker.withRegistry('https://index.docker.io/v1/', 'dockerlogin') {
+//                   def voteImage = docker.build("amitmandliya/vote:v${env.BUILD_ID}", "./vote")
+//                   voteImage.push()
+//                   voteImage.push("dev")
+// 	          voteImage.push("latest")
+//               }
+//             }
+//           }
+//       }
       stage('Docker BnP'){
           agent any
           steps{
             echo 'Packaging vote app with docker'
-            script{
-              docker.withRegistry('https://index.docker.io/v1/', 'dockerlogin') {
-                  def voteImage = docker.build("amitmandliya/vote:v${env.BUILD_ID}", "./vote")
-                  voteImage.push()
-                  voteImage.push("dev")
-	          voteImage.push("latest")
-              }
-            }
           }
       }
 
